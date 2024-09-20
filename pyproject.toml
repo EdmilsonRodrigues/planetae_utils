@@ -1,0 +1,5 @@
+[tool.ruff]
+include = ["models/*"]
+exclude = ["models/__init__.py"]
+line-length = 80
+fix = true

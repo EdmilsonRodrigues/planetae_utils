@@ -1,0 +1,2 @@
+class WebScrapper:
+    pass
