@@ -1,9 +1,10 @@
 asyncio==3.4.3
-playwright==1.47.0
-pyMuPDF==1.24.10
-fl
+playwright==1.48.0
+pyMuPDF==1.24.13
 pyzbar==0.1.9
-pillow==10.4.0
+pillow==11.0.0
 opencv-python==4.10.0.84
 pandas==2.2.3
-ruff==0.6.6
+ruff==0.7.2
+openai==1.53.1
+pdf2image==1.17.0
