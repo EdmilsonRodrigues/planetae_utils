@@ -1,3 +1,23 @@
+[project]
+name = "planetae-utils"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "asyncio==3.4.3",
+    "openai==1.57.0",
+    "opencv-python==4.10.0.84",
+    "pandas==2.2.3",
+    "pdf2image==1.17.0",
+    "pillow==11.0.0",
+    "playwright==1.49.0",
+    "pydantic[all,email]>=2.10.3",
+    "pymupdf==1.24.0",
+    "pyzbar==0.1.9",
+    "ruff==0.8.2",
+]
+
 [tool.ruff]
 include = ["models/*"]
 exclude = ["models/__init__.py"]

@@ -1,31 +1,31 @@
 from time import sleep
-from openai import APIConnectionError, OpenAI
+import openai
 
 
 class OpenAIService:
     api_key: str
-    client: OpenAI
-    model: str
+    client: openai.AsyncOpenAI
+    model: str = "gpt-4o-2024-08-06"
 
-    def __init__(self, api_key: str, model: str):
+    def __init__(self, api_key: str, model: str = "gpt-4o-2024-08-06"):
         self.api_key = api_key
-        self.client = OpenAI(
+        self.client = openai.AsyncOpenAI(
             api_key=self.api_key,
         )
         self.model = model
 
-    def get_chat_response(
+    async def get_chat_response(
         self,
         messages: list,
     ) -> str | None:
         try:
-            chat_completion = self.client.chat.completions.create(
+            chat_completion = await self.client.chat.completions.create(
                 messages=messages, model=self.model, max_tokens=10000
             )
-        except APIConnectionError as e:
+        except openai.APIConnectionError as e:
             print(f"Connection error: {e}")
             sleep(5)  # Wait for 5 seconds before retrying
-            return self.get_chat_response(messages)
+            return await self.get_chat_response(messages)
 
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
@@ -36,7 +36,7 @@ class OpenAIService:
         if content:
             return content.strip()
 
-    def ask_question(
+    async def ask_question(
         self,
         initialization_prompt: str,
         question: str,
@@ -51,4 +51,4 @@ class OpenAIService:
                 "content": question,
             },
         ]
-        return self.get_chat_response(messages)
+        return await self.get_chat_response(messages)
